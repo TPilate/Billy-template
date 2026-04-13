@@ -1,0 +1,48 @@
+---
+title: "Getting Started with the CMS"
+date: "2025-01-15"
+description: "Learn how to create and manage content with this Next.js CMS template."
+---
+
+## Welcome to Your CMS
+
+This is a sample blog post to demonstrate the CMS capabilities of this Next.js template. Content is managed through **Markdown** and **MDX** files stored in the `content/` directory.
+
+### How It Works
+
+1. **Create content files** in the `content/blog/` or `content/pages/` directory
+2. **Add frontmatter** at the top of each file with metadata like title, date, and description
+3. **Write your content** using Markdown or MDX syntax
+4. The content is automatically rendered and available at the corresponding URL
+
+### Frontmatter
+
+Each content file starts with YAML frontmatter:
+
+```yaml
+---
+title: "Your Post Title"
+date: "2025-01-15"
+description: "A brief description of your post."
+---
+```
+
+### File Structure
+
+```
+content/
+├── blog/
+│   ├── getting-started.mdx
+│   └── my-second-post.mdx
+└── pages/
+    └── about.mdx
+```
+
+Posts in `content/blog/` are available at `/blog/[slug]` and pages in `content/pages/` are available at `/[slug]`.
+
+### Next Steps
+
+- Edit this file at `content/blog/getting-started.mdx`
+- Create new blog posts by adding `.mdx` files to `content/blog/`
+- Create new pages by adding `.mdx` files to `content/pages/`
+- Customize the layout and components in `src/components/`
