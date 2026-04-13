@@ -1,88 +1,64 @@
-# Billy Template
+# Billy - One Page Vitrine + Mongo CMS
 
-A **Next.js** template with built-in CMS capabilities powered by Markdown and MDX.
+Site vitrine one-page construit avec Next.js, avec un CMS admin simple et rapide base sur MongoDB.
 
-## Features
+## Ce que contient le projet
 
-- **File-based CMS** — manage content through Markdown/MDX files in the `content/` directory
-- **Blog** — built-in blog with listing and individual post pages
-- **Static Pages** — create standalone pages by adding files to `content/pages/`
-- **Tailwind CSS** — utility-first styling with typography plugin
-- **TypeScript** — full type safety
-- **SEO-friendly** — server-rendered pages with dynamic metadata
+- One-page vitrine (hero, approche, soins, tarifs, lieux, contact)
+- Interface admin a `/admin` pour modifier le contenu sans toucher au code
+- Contenu stocke en base MongoDB (`siteContent` collection)
+- API routes pour lecture publique et edition admin
+- Style editorial base sur le systeme de design defini dans `context/design.md`
 
-## Getting Started
+## Installation
 
-Install dependencies and start the development server:
+1. Installer les dependances
 
 ```bash
 npm install
+```
+
+2. Creer un fichier `.env.local` a partir de `.env.example`
+
+```bash
+cp .env.example .env.local
+```
+
+3. Lancer le projet
+
+```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site.
+4. Ouvrir:
+- Site: http://localhost:3000
+- Admin CMS: http://localhost:3000/admin
 
-## Content Management
+## Variables d'environnement
 
-### Blog Posts
+- `MONGODB_URI` : URI MongoDB
+- `MONGODB_DB_NAME` : nom de la base
+- `ADMIN_PASSWORD` : mot de passe de l'interface admin
 
-Add Markdown or MDX files to `content/blog/` with frontmatter:
+Par defaut, le projet utilise:
+- `mongodb://localhost:27042/billy`
+- base `billy`
 
-```mdx
----
-title: "My Post Title"
-date: "2025-01-15"
-description: "A brief description of the post."
----
+## CMS Admin
 
-Your content here...
-```
+L'interface admin permet de gerer:
+- Hero
+- Approche
+- Soins (ajout/suppression)
+- Prix conscient
+- Lieux
+- Contact
 
-Posts are automatically available at `/blog/[slug]` where the slug is derived from the filename.
+Une fois connecte, cliquez sur "Sauvegarder" pour mettre a jour le document principal `home` en base.
 
-### Pages
+## Commandes utiles
 
-Add Markdown or MDX files to `content/pages/` with frontmatter:
-
-```mdx
----
-title: "Page Title"
-description: "A brief description of the page."
----
-
-Your page content here...
-```
-
-Pages are automatically available at `/[slug]`.
-
-## Project Structure
-
-```
-├── content/              # CMS content directory
-│   ├── blog/             # Blog posts (Markdown/MDX)
-│   └── pages/            # Static pages (Markdown/MDX)
-├── src/
-│   ├── app/              # Next.js App Router pages
-│   │   ├── blog/         # Blog listing and post pages
-│   │   └── [slug]/       # Dynamic CMS pages
-│   ├── components/       # Reusable UI components
-│   └── lib/              # Content parsing utilities
-├── public/               # Static assets
-└── package.json
-```
-
-## Scripts
-
-- `npm run dev` — Start the development server
-- `npm run build` — Build for production
-- `npm run start` — Start the production server
-- `npm run lint` — Run ESLint
-
-## Extending
-
-This template is designed to be extended:
-
-- **Headless CMS** — integrate with Sanity, Strapi, Contentful, or similar
-- **Authentication** — add admin routes with NextAuth.js
-- **Database** — store content in a database
-- **Search** — implement full-text search across content
+- `npm run dev` : lancer en local
+- `npm run lint` : verifier le code
+- `npm run build` : build production
+- `npm run start` : demarrer en mode production

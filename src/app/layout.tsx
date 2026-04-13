@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { Cormorant_Garamond, Inter, Syne } from "next/font/google";
 import "./globals.css";
 
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const syne = Syne({ subsets: ["latin"], variable: "--font-syne" });
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+});
+
 export const metadata: Metadata = {
-  title: "Billy Template — Next.js CMS",
+  title: "Lucie Amanahita Soete | Massages Bien-Etre",
   description:
-    "A Next.js template with built-in CMS capabilities powered by Markdown and MDX.",
+    "Site vitrine one-page avec CMS admin et contenu gere via MongoDB.",
 };
 
 export default function RootLayout({
@@ -15,11 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col font-sans">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+    <html lang="fr" className="h-full antialiased">
+      <body
+        className={`min-h-full ${inter.variable} ${syne.variable} ${cormorant.variable}`}
+      >
+        {children}
       </body>
     </html>
   );
