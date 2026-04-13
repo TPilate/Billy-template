@@ -123,6 +123,7 @@ export default function AdminEditor({
             description: "Description du soin",
             idealFor: "Ideal pour...",
             duration: "1h",
+            price: "60 EUR",
           },
         ],
       },
@@ -225,6 +226,52 @@ export default function AdminEditor({
                 setContent({
                   ...content,
                   hero: { ...content.hero, quote: event.target.value },
+                })
+              }
+            />
+          </label>
+          <h3>Images</h3>
+          <p>
+            Utilisez un chemin depuis public/assets (ex: /assets/mon-image.jpg).
+          </p>
+          <label>
+            Image hero
+            <input
+              value={content.visuals.heroImage}
+              onChange={(event) =>
+                setContent({
+                  ...content,
+                  visuals: { ...content.visuals, heroImage: event.target.value },
+                })
+              }
+            />
+          </label>
+          <label>
+            Image section nomade
+            <input
+              value={content.visuals.nomadicImage}
+              onChange={(event) =>
+                setContent({
+                  ...content,
+                  visuals: {
+                    ...content.visuals,
+                    nomadicImage: event.target.value,
+                  },
+                })
+              }
+            />
+          </label>
+          <label>
+            Image section contact
+            <input
+              value={content.visuals.contactImage}
+              onChange={(event) =>
+                setContent({
+                  ...content,
+                  visuals: {
+                    ...content.visuals,
+                    contactImage: event.target.value,
+                  },
                 })
               }
             />
@@ -359,6 +406,15 @@ export default function AdminEditor({
                   value={item.duration}
                   onChange={(event) =>
                     updateService(index, { duration: event.target.value })
+                  }
+                />
+              </label>
+              <label>
+                Prix affiche
+                <input
+                  value={item.price}
+                  onChange={(event) =>
+                    updateService(index, { price: event.target.value })
                   }
                 />
               </label>

@@ -1,31 +1,32 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getSiteContent, sanitizeSiteContent } from "@/lib/site-content";
 
 export default async function Home() {
   const content = sanitizeSiteContent(await getSiteContent());
 
   return (
-    <div>
-      <header className="top-nav">
-        <div className="container top-nav-inner">
-          <p className="brand">Lucie Amanahita Soete</p>
+    <div className="site-shell">
+      <header className="floating-nav-wrap">
+        <div className="nav-bar">
+          <p className="brand">Lucie Amanahita</p>
           <nav>
             <a href="#approche">Approche</a>
-            <a href="#soins">Soins</a>
-            <a href="#tarifs">Tarifs</a>
+            <a href="#rituels">Rituels</a>
+            <a href="#nomade">Nomade</a>
             <a href="#contact">Contact</a>
           </nav>
         </div>
       </header>
 
       <main>
-        <section className="hero-section" id="top">
+        <section className="hero-section reveal-mask" id="top">
           <div className="container hero-grid">
-            <div>
+            <div className="hero-copy">
               <p className="eyebrow">{content.hero.badge}</p>
               <h1>{content.hero.title}</h1>
               <p className="lead">{content.hero.subtitle}</p>
-              <blockquote>{content.hero.quote}</blockquote>
+              <blockquote className="editorial-quote">{content.hero.quote}</blockquote>
               <div className="cta-row">
                 <a href={content.hero.primaryCtaHref} className="btn-primary">
                   {content.hero.primaryCtaLabel}
@@ -35,32 +36,35 @@ export default async function Home() {
                 </a>
               </div>
             </div>
-            <aside className="hero-aside">
-              <h2>Cabinet Nomade</h2>
-              <p>
-                Un cocon mobile, une ecoute profonde, une approche artisanale du
-                soin.
-              </p>
-              <a href="#lieux">Voir les lieux</a>
-            </aside>
+            <div className="hero-image-wrap reveal-mask">
+              <Image
+                src={content.visuals.heroImage}
+                alt="Lucie pendant un soin fascia"
+                fill
+                priority
+                sizes="(max-width: 900px) 100vw, 60vw"
+                className="hero-image"
+              />
+            </div>
           </div>
         </section>
 
-        <section className="content-section" id="approche">
+        <section className="content-section reveal-mask" id="approche">
           <div className="container split-grid">
             <h2>{content.approach.title}</h2>
             <p>{content.approach.content}</p>
           </div>
         </section>
 
-        <section className="content-section" id="soins">
+        <section className="content-section reveal-mask" id="rituels">
           <div className="container">
             <h2>{content.services.title}</h2>
-            <div className="bento-grid">
+            <div className="ritual-grid">
               {content.services.items.map((service) => (
                 <article key={service.title} className="service-card">
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
+                  <p className="service-price">{service.price}</p>
                   <p>
                     <strong>Ideal pour:</strong> {service.idealFor}
                   </p>
@@ -73,38 +77,56 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="content-section" id="tarifs">
-          <div className="container price-card">
+        <section className="content-section reveal-mask" id="nomade">
+          <div className="container">
+            <h2>{content.locations.title}</h2>
+            <div className="nomadic-bento">
+              <article className="bento-cell cell-photo">
+                <Image
+                  src={content.visuals.nomadicImage}
+                  alt="Cocon nomade de massage"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  className="cover-image"
+                />
+              </article>
+              <article className="bento-cell cell-markets">
+                <h3>Marches</h3>
+                <p>{content.locations.markets}</p>
+              </article>
+              <article className="bento-cell cell-cta">
+                <h3>Suivre le parcours</h3>
+                <a href={content.contact.instagram} className="btn-secondary">
+                  Follow on Instagram
+                </a>
+              </article>
+              <article className="bento-cell cell-festivals">
+                <h3>Festivals a venir</h3>
+                <p>{content.locations.festivals}</p>
+              </article>
+              <article className="bento-cell cell-home">
+                <h3>A domicile</h3>
+                <p>{content.locations.homeVisits}</p>
+              </article>
+              <article className="bento-cell cell-note">
+                <p>{content.locations.note}</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="content-section pricing-manifesto reveal-mask" id="tarifs">
+          <div className="container manifesto-inner">
+            <p className="eyebrow">Conscious pricing</p>
             <h2>{content.pricing.title}</h2>
             <p>{content.pricing.content}</p>
             <p className="price-range">
-              {content.pricing.rangeMin} EUR a {content.pricing.rangeMax} EUR
+              {content.pricing.rangeMin} EUR - {content.pricing.rangeMax} EUR
             </p>
           </div>
         </section>
 
-        <section className="content-section" id="lieux">
-          <div className="container">
-            <h2>{content.locations.title}</h2>
-            <div className="locations-grid">
-              <article>
-                <h3>Marches</h3>
-                <p>{content.locations.markets}</p>
-              </article>
-              <article>
-                <h3>Festivals</h3>
-                <p>{content.locations.festivals}</p>
-              </article>
-              <article>
-                <h3>A domicile</h3>
-                <p>{content.locations.homeVisits}</p>
-              </article>
-            </div>
-            <p className="small-note">{content.locations.note}</p>
-          </div>
-        </section>
-
-        <section className="content-section contact-wrap" id="contact">
+        <section className="content-section contact-wrap reveal-mask" id="contact">
           <div className="container contact-grid">
             <div>
               <h2>{content.contact.title}</h2>
@@ -117,6 +139,15 @@ export default async function Home() {
                 Instagram
               </a>
             </div>
+            <aside className="contact-image-wrap">
+              <Image
+                src={content.visuals.contactImage}
+                alt="Ambiance de soin et contact"
+                fill
+                sizes="(max-width: 900px) 100vw, 40vw"
+                className="cover-image"
+              />
+            </aside>
             <form className="contact-form">
               <label>
                 Nom & Prenom

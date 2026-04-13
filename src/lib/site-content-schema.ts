@@ -3,6 +3,7 @@ export type ServiceItem = {
   description: string;
   idealFor: string;
   duration: string;
+  price: string;
 };
 
 export type SiteContent = {
@@ -17,6 +18,11 @@ export type SiteContent = {
     primaryCtaHref: string;
     secondaryCtaLabel: string;
     secondaryCtaHref: string;
+  };
+  visuals: {
+    heroImage: string;
+    nomadicImage: string;
+    contactImage: string;
   };
   approach: {
     title: string;
@@ -67,6 +73,14 @@ export const defaultSiteContent: SiteContent = {
     secondaryCtaLabel: "Decouvrir mon approche",
     secondaryCtaHref: "#approche",
   },
+  visuals: {
+    heroImage:
+      "/assets/458987590_10223824490152267_7197927134106061390_n.jpg",
+    nomadicImage:
+      "/assets/etre-commun-massage-amma-assis.szze1S3aD2.jpg",
+    contactImage:
+      "/assets/662741228_10229806865107902_2973254305887363298_n.jpg",
+  },
   approach: {
     title: "Mon Approche",
     content:
@@ -81,6 +95,7 @@ export const defaultSiteContent: SiteContent = {
           "Un voyage interieur pour relacher la pression quotidienne grace a des pressions douces et une ecoute tissulaire profonde.",
         idealFor: "Fatigue, stress, besoin de reconnexion a soi, emotions fortes.",
         duration: "1h a 1h30",
+        price: "70 EUR",
       },
       {
         title: "Soin Cible (Dos, Drainage, Nerf Vague)",
@@ -88,6 +103,7 @@ export const defaultSiteContent: SiteContent = {
           "Un accompagnement specifique la ou le corps tiraille: dos, digestion, tensions chroniques ou fatigue nerveuse.",
         idealFor: "Douleurs localisees, digestion difficile, tensions persistantes.",
         duration: "45 min",
+        price: "50 EUR",
       },
     ],
   },
